@@ -22,7 +22,7 @@ class MapIterator implements \Iterator
         $this->handler = $handler;
     }
 
-    public function next()
+    public function next():void
     {
         // Cleanup current (processed) entry. We cannot unset completely, unfortunately, because then indexing will be
         // broken (and the whole execution will be broken).
@@ -31,22 +31,22 @@ class MapIterator implements \Iterator
         $this->inner->next();
     }
 
-    public function current()
+    public function current():mixed
     {
         return call_user_func($this->handler, $this->inner->current(), $this->inner);
     }
 
-    public function rewind()
+    public function rewind():void
     {
         $this->inner->rewind();
     }
 
-    public function key()
+    public function key():mixed
     {
         return $this->inner->key();
     }
 
-    public function valid()
+    public function valid():bool
     {
         return $this->inner->valid();
     }

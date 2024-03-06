@@ -3,7 +3,7 @@
 namespace AlexS\GuzzleDynamicPool;
 
 use GuzzleHttp\Promise\PromiseInterface;
-use function GuzzleHttp\Promise\each_limit;
+use GuzzleHttp\Promise\Each;
 
 /**
  * @param iterable $initialWorkload
@@ -30,5 +30,5 @@ function dynamic_pool($initialWorkload, $handler, $concurrency = 10)
     $generator = new ExpectingIterator($generator);
 
     // And the concurrent runner
-    return each_limit($generator, $concurrency);
+    return Each::ofLimit($generator, $concurrency);
 }

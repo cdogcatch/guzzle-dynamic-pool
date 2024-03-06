@@ -19,7 +19,7 @@ class ExpectingIterator implements \Iterator
         $this->inner = $inner;
     }
 
-    public function next()
+    public function next():void
     {
         if (!$this->wasValid && $this->valid()) {
             // Just do nothing, because the inner iterator has became valid
@@ -35,7 +35,7 @@ class ExpectingIterator implements \Iterator
         return $this->inner->current();
     }
 
-    public function rewind()
+    public function rewind():void
     {
         $this->inner->rewind();
 
@@ -47,7 +47,7 @@ class ExpectingIterator implements \Iterator
         return $this->inner->key();
     }
 
-    public function valid()
+    public function valid():bool
     {
         return $this->inner->valid();
     }
